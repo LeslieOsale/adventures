@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Starkville Adventures</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2c5530;
+            --secondary: #e09f3e;
+            --accent: #9e2a2b;
+            --light: #f9f9f9;
+            --dark: #333;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Compact Header */
+        .compact-header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo i {
+            color: var(--secondary);
+            margin-right: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        nav ul li a.active:after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: var(--secondary);
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+        
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            padding: 60px 0 40px;
+            background: linear-gradient(135deg, rgba(44, 85, 48, 0.05) 0%, rgba(224, 159, 62, 0.05) 100%);
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .page-header p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--gray);
+        }
+        
+        
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 50px 20px 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: var(--secondary);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-column p {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .blog-container {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 0 10px 5px;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-post {
+                flex-direction: column;
+            }
+            
+            .featured-image {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Compact Header -->
+    <header class="compact-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-mountain"></i>
+                    <span>Starkville Adventures</span>
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="tours.html">Tours</a></li>
+                        <li><a href="blog.html" class="active">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1>Starkville Adventures Blog</h1>
+            <p>Discover travel tips, adventure stories, and insider guides to Kenya's most spectacular destinations</p>
+        </div>
+    </div>
+
+    <!-- Blog Content -->
+    <div class="container">
+        <div class="blog-container">
+            <!-- Main Content -->
+            <main class="blog-main">
+                <!-- Featured Post -->
+                <article class="featured-post">
+                    <div class="featured-image">
+                        <img src="https://images.unsplash.com/photo-1516298773066-c48f8e9bd92b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Safari in Maasai Mara">
+                    </div>
+                    <div class="featured-content">
+                        <span class="post-category">Safari Guide</span>
+                        <h2>Ultimate Guide to the Great Migration in Maasai Mara</h2>
+                        <div class="post-meta">
+                            <span><i class="far fa-user"></i> John Doe</span>
+                            <span><i class="far fa-calendar"></i> June 15, 2023</span>
+                            <span><i class="far fa-clock"></i> 5 min read</span>
+                        </div>
+                        <p class="post-excerpt">Witnessing the Great Migration is a once-in-a-lifetime experience. In this comprehensive guide, we share everything you need to know about planning your trip to see this natural wonder, including the best times to visit, prime viewing locations, and expert tips for photography.</p>
+                        <a href="#" class="read-more">Continue Reading <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Recent Posts -->
+                <h2 class="section-title">Latest Articles</h2>
+                <div class="posts-grid">
+                    <!-- Post 1 -->
+                    <article class="post-card">
+                        <div class="post-card-image">
+                            <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mount Kenya hiking">
+                        </div>
+                        <div class="post-card-content">
+                            <span class="post-category">Hiking</span>
+                            <h3>Conquering Mount Kenya: A Beginner's Guide</h3>
+                            <div class="post-meta">
+                                <span><i class="far fa-calendar"></i> May 28, 2023</span>
+                            </div>
+                            <p>Everything you need to know to prepare for climbing Mount Kenya, from fitness requirements to packing lists and route options.</p>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </article>
+
+                    <!-- Post 2 -->
+                    <article class="post-card">
+                        <div class="post-card-image">
+                            <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Kenyan culture">
+                        </div>
+                        <div class="post-card-content">
+                            <span class="post-category">Culture</span>
+                            <h3>Cultural Immersion: Visiting Maasai Villages</h3>
+                            <div class="post-meta">
+                                <span><i class="far fa-calendar"></i> May 10, 2023</span>
+                            </div>
+                            <p>Learn how to respectfully engage with Maasai communities and gain authentic insights into their traditions and way of life.</p>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </article>
+
+                    <!-- Post 3 -->
+                    <article class="post-card">
+                        <div class="post-card-image">
+                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Kenyan beach">
+                        </div>
+                        <div class="post-card-content">
+                            <span class="post-category">Beach</span>
+                            <h3>Hidden Gems: Kenya's Most Beautiful Beaches</h3>
+                            <div class="post-meta">
+                                <span><i class="far fa-calendar"></i> April 22, 2023</span>
+                            </div>
+                            <p>Beyond the popular resorts, discover Kenya's secluded beaches with pristine sands and crystal-clear waters.</p>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#"><i class="fas fa-chevron-right"></i></a>
+                </div>
+            </main>
+
+            <!-- Sidebar -->
+            <aside class="blog-sidebar">
+                <!-- About Widget -->
+                <div class="sidebar-widget">
+                    <h3>About Us</h3>
+                    <p>Starkville Adventures is a registered tour operator in Kenya specializing in authentic, sustainable travel experiences.</p>
+                    <a href="about.html" class="read-more" style="margin-top: 15px;">Learn More</a>
+                </div>
+
+                <!-- Categories Widget -->
+                <div class="sidebar-widget">
+                    <h3>Categories</h3>
+                    <ul class="categories-list">
+                        <li><a href="#">Safari Guides <span>8</span></a></li>
+                        <li><a href="#">Hiking & Trekking <span>12</span></a></li>
+                        <li><a href="#">Cultural Experiences <span>6</span></a></li>
+                        <li><a href="#">Beach Destinations <span>5</span></a></li>
+                        <li><a href="#">Travel Tips <span>10</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Recent Posts Widget -->
+                <div class="sidebar-widget">
+                    <h3>Recent Posts</h3>
+                    <ul class="recent-posts">
+                        <li>
+                            <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Recent post">
+                            <div class="recent-post-content">
+                                <h4><a href="#">Conquering Mount Kenya: A Beginner's Guide</a></h4>
+                                <span>May 28, 2023</span>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Recent post">
+                            <div class="recent-post-content">
+                                <h4><a href="#">Cultural Immersion: Visiting Maasai Villages</a></h4>
+                                <span>May 10, 2023</span>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Recent post">
+                            <div class="recent-post-content">
+                                <h4><a href="#">Hidden Gems: Kenya's Most Beautiful Beaches</a></h4>
+                                <span>April 22, 2023</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter Widget -->
+                <div class="sidebar-widget">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe for travel tips and exclusive offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Starkville Adventures</h3>
+                    <p>Your premier partner for unforgettable experiences in the heart of Kenya.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</p>
+                    <p><i class="fas fa-phone"></i> +254 7XX XXX XXX</p>
+                    <p><i class="fas fa-envelope"></i> info@starkvilleadventures.co.ke</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Starkville Adventures. All rights reserved. | Business Registration No: CPR/2023/XXXXX</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

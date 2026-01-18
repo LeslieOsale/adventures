@@ -1,0 +1,284 @@
+/* -------------------------------------------------------
+   MAGAZINE CARD — CLEAN COMPLETE REWRITE
+   Image overlay text reveals on hover
+-------------------------------------------------------- */
+
+/* CARD WRAPPER */
+.magazine-card {
+    width: 360px;
+    background: #fff;
+    min-height: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 2rem;
+
+    box-shadow: 0 5px 10px rgba(0,0,0,0.05),
+                0 15px 30px rgba(0,0,0,0.08);
+
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* Hover lift */
+.magazine-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.12),
+                0 25px 50px rgba(0,0,0,0.16);
+}
+
+/* -------------------------------------------------------
+   HEADER + IMAGE
+-------------------------------------------------------- */
+
+.card-header {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+/* Image zooms */
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+.magazine-card:hover .card-image {
+    transform: scale(1.03);
+}
+
+/* Image overlay */
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    padding: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0.55) 100%
+    );
+}
+
+/* -------------------------------------------------------
+   BADGE + ACTION BUTTONS
+-------------------------------------------------------- */
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.card-badge {
+    background: rgba(255,255,255,0.9);
+    color: #2c3e50;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2c3e50;
+
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.action-btn:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+/* Like animation */
+@keyframes likeAnimation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+.liked {
+    animation: likeAnimation 0.4s ease;
+}
+
+/* FIRST TEXT (visible by default) */
+.header-content-one {
+    color: #fff;
+    text-shadow: 0 3px 12px rgba(0,0,0,0.4);
+    position: absolute;
+    padding-top: 60px ;
+
+    opacity: 1;
+    transform: translateY(0);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    
+    
+}
+.header-content-one .title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.header-content-one .title::before {
+    content: '';
+    display: block;
+    width: 200px;
+    height: 3px;
+    background: linear-gradient(90deg,transparent,rgb(43, 255, 0),transparent);
+    margin-top: 6px;
+    border-radius: 2px;
+}
+.header-content-one .title::after {
+    content: '';
+    display: block;
+    width: 200px;
+    height: 3px;
+    background: linear-gradient(90deg,transparent,rgb(255, 217, 0),transparent);
+    margin-top: 6px;
+    border-radius: 2px;
+}
+.header-content-one .rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 6px;
+}
+
+/* Slide upward + fade out on hover */
+.magazine-card:hover .header-content-one {
+    opacity: 0;
+    transform: translateY(-30px); /* adjust height of the roll */
+}
+
+/* -------------------------------------------------------
+   HEADER TEXT REVEAL IN IMAGE AREA
+-------------------------------------------------------- */
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding-top: 45px;
+
+    color: #fff;
+    text-shadow: 0 3px 12px rgba(0,0,0,0.4);
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+/* Reveal on hover */
+.magazine-card:hover .header-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.header-content .title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.header-content .subtitle {
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+
+
+/* -------------------------------------------------------
+   FOOTER BUTTON !#f1c40f
+-------------------------------------------------------- */
+
+.card-footer {
+    margin-top: 1rem;
+}
+
+
+
+/* Button with white → black → white gradient */
+.card-btn {
+    background: linear-gradient(90deg, #ffffff, #00ff1167, #ffffff);
+    color: #000000;
+    border: none;
+
+    padding: 10px 24px;
+    border-radius: 30px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+/* Hover: glow + lift */
+.card-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+
+.bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+.header-content-one .rating i {
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #ffd700;
+}
+.bottom-content .rating {
+    color: #e5e0e0;
+}
+
+
+/* -------------------------------------------------------
+   RESPONSIVE
+-------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .magazine-card {
+        width: 100%;
+    }
+    .card-body {
+        padding: 1.2px;
+    }
+}

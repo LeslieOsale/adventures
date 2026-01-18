@@ -1,0 +1,1154 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                <link href="https://fonts.googleapis.com/css2?family=Story+Script&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Carattere&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Starkville Adventures — Discover Kenya</title>
+  <meta name="description" content="Premium curated hikes, safaris, picnics and team-building trips across Kenya." />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Recoleta&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style2.css">
+  <link rel="stylesheet" href="card.css">
+
+  <style>
+    :root{
+      --grass-green: rgba(3, 75, 31, 0.95);
+      --golden-yellow: #FFD700;
+      --white: #FFFFFF;
+      --forest-shadow: #023015;
+      --earth-brown: #8C5A2B;
+      --glass: rgba(255, 255, 255, 0.751);
+      --max-width:1200px;
+    }
+
+    *{box-sizing:border-box}
+    html, body {
+  background-image:
+    linear-gradient(rgba(3,75,31,0.4), rgba(3,75,31,0.1)),
+    url("https://res.cloudinary.com/dwpr0xrjq/image/upload/v1764154956/golden-savannah-landscape-at-sunset-with-solitary-tree-and-dramatic-clouds-free-photo_jtjdao.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+    a{color:inherit}
+    .container{max-width:var(--max-width);margin:0 auto;padding:0 20px}
+
+    /* content wrapper for sections after hero */
+    .content-wrapper{
+      background:linear-gradient(135deg,rgba(0, 0, 0, 0.22),rgba(42, 44, 40, 0.29));
+      position:relative;
+      z-index:10;
+      margin:48px 20px 0 20px;
+      padding:0 20px;
+      border-radius:28px 28px 0 0;
+      backdrop-filter:blur(16px);
+      box-shadow:0 -15px 60px rgba(2,6,23,0.12),inset 0 1px 0 rgba(255,255,255,0.6);
+      overflow:visible;
+      border-top:3px solid rgba(21, 255, 0, 0.4);
+      margin-top: 72px;
+
+    }
+
+    /* Overlay stat boxes */
+    .overlay-stats{
+      display:flex;
+      gap:16px;
+      justify-content:center;
+      position:absolute;
+      top:-40px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:50;
+      width:100%;
+      padding:0 20px;
+      box-sizing:border-box
+    }
+
+    .overlay-stat-box{
+      background:linear-gradient(135deg,#ffffff,#b6d3a6);
+      border-radius: 12px;
+      padding:12px 14px;
+      min-width:72px;
+      text-align:center;
+      box-shadow:0 8px 30px rgba(2,6,23,0.15);
+      border:px solid var(--golden-yellow);
+      overflow:hidden
+    }
+
+    .overlay-stat-box .stat-value{
+      font-family:Recoleta, serif;
+      font-weight:900;
+      font-size:16px;
+      color:var(--earth-brown);
+      margin-bottom:6px
+    }
+
+    .overlay-stat-box .stat-label{
+      font-size:9px;
+      color:rgba(0,0,0,0.6);
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:0.5px
+    }
+
+    
+
+    /* HERO */
+    .hero{min-height:83vh;display:grid;grid-template-columns:1fr 260px;gap:20px;align-items:center;padding:10px 0 20px;position:relative;background-size:cover;background-position:center;background-attachment:fixed;transition:background-image 1s ease-in-out;margin-left:calc(-50vw + 50%);margin-right:calc(-50vw + 50%);padding-left:calc(50vw - 50%);padding-right:calc(50vw - 50%)}
+    .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0, 0, 0, 0.225),rgba(139, 85, 43, 0.225));pointer-events:none;z-index:1}
+    .hero > *{position:relative;z-index:2}
+    .hero-left{padding:6px 0}
+    .eyebrow{color:var(--golden-yellow);font-weight:800;letter-spacing:1px}
+    .hero-title{font-family:Tangerine, serif;font-size:60px;line-height:0.95;margin:8px 0;color:var(--golden-yellow);text-shadow:0 6px 18px rgba(2,6,23,0.35)}
+    .lead{font-family:Recoleta, serif;color:rgb(255, 255, 255);max-width:640px;font-size:16px}
+    .hero-ctas{display:flex;gap:12px;margin-top:18px;align-items:center;flex-wrap:nowrap;overflow:visible}
+
+    /* search card */
+    .search-card{background:var(--glass);border-radius:14px;padding:14px;box-shadow:0 8px 30px rgba(118, 248, 118, 0.785);margin-top:18px}
+    .search-row{display:flex;gap:10px}
+    .search-row input,.search-row select{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(2,6,23,0.06);background:transparent;outline:none}
+    .search-row .go{min-width:110px}
+    
+
+    /* stats - visible without scrolling */
+    .stats-wrap{width:100%;display:flex;justify-content:center}
+    .stats{display:flex;gap:12px;background:var(--white);padding:10px;border-radius:10px;box-shadow:0 8px 28px rgba(2,6,23,0.08);transform:translateY(0);margin-top:10px;overflow:auto}
+    .stat{padding:8px 10px;border-radius:8px;text-align:center;flex:0 0 auto;white-space:nowrap}
+    .stat .num{font-family:Recoleta, serif;font-weight:900;font-size:14px;color:var(--grass-green)}
+    .stat .label{font-size:11px;color:rgba(0,0,0,0.56)}
+    .stat::before {
+  content: "";
+  position: absolute;
+  inset: 4px;         /* spacing between borders */
+  border-radius: 18px; /* reduced radius so it fits inside neatly */
+  border: 1px solid var(--forest-shadow);
+  pointer-events: none;
+}
+
+    /* hero side card image */
+   .hero-aside {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(2,6,23,0.12);
+
+  /* OUTER border (yellow) */
+  border: px solid var(--golden-yellow);
+}
+
+/* INNER border (green) */
+.hero-aside::before {
+  content: "";
+  position: absolute;
+  inset: 3px;         /* spacing between borders */
+  border-radius: 16px; /* reduced radius so it fits inside neatly */
+  border: 1px solid var(--golden-yellow);
+  pointer-events: none;
+}
+
+    .hero-aside img{width:100%;height:240px;object-fit:cover;display:block}
+    .aside-meta{padding:12px;background:linear-gradient(180deg, rgba(228, 222, 222, 0.509), rgba(21, 104, 3, 0.829));color:#ffffff}
+    .price{font-weight:900;color:var(--golden-yellow)}
+
+    /* Hero aside content styling */
+    .aside-h1{font-weight:800;color:#ffffff;font-size:16px;margin:0;font-family:Recoleta,serif}
+    .aside-h2{font-weight:800;color:var(--golden-yellow);margin-top:8px;margin-bottom:0;font-size:14px;font-family:Recoleta,serif}
+    .aside-p1{color:#ffffff;margin-top:6px;margin-bottom:0;font-size:16px;font-family:Recoleta,serif}
+    .aside-p2{color:#ffffff;margin-top:6px;margin-bottom:0;font-size:16px;font-family:Recoleta,serif}
+    .aside-price{font-weight:900;color:var(--golden-yellow);font-size:16px;margin-top:8px}
+
+    /* experiences */
+    .experiences{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:36px 0}
+    .exp{background:linear-gradient(135deg,rgba(255,255,255,0.95),rgba(248,252,246,0.9));padding:24px;border-radius: 0px 20px 0px 20px;text-align:center;border-left:3px solid rgb(3, 170, 67);border-right:3px solid var(--golden-yellow);box-shadow:0 8px 32px rgba(3,75,31,0.06);transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);cursor:pointer;position:relative;overflow:hidden}
+    .exp::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(255,215,0,0.1),transparent 50%);pointer-events:none}
+    .exp:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 16px 48px rgba(3,75,31,0.12);background:linear-gradient(135deg,rgba(255,255,255,0.98),rgba(243,248,240,0.95))}
+    .exp-icon{width:80px;height:80px;margin:0 auto 12px;border-radius:12px;overflow:hidden;object-fit:cover;transition:transform 0.3s ease;box-shadow:0 4px 12px rgba(3,75,31,0.1)}
+    .exp:hover .exp-icon{transform:scale(1.12) rotate(4deg)}
+    .exp h4{margin:12px 0 6px;color:var(--forest-shadow);font-family:Recoleta;font-weight:800;font-size:18px}
+    .exp p{color:rgba(0,0,0,0.58);font-size:14px;line-height:1.5}
+
+    @media(max-width:980px){.experiences{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr}}
+
+    /* Tablet breakpoint: prevent horizontal overflow for hero content */
+    @media (max-width:768px) {
+      /* disable full-bleed margins so content uses viewport padding */
+      .hero{
+        margin-left:calc(-50vw + 50%) !important;
+        margin-right:calc(-50vw + 50%) !important;
+        padding-left:calc(50vw - 50%) !important;
+        padding-right:calc(50vw - 50%) !important;
+        background-attachment:fixed !important;
+        grid-template-columns:1fr 320px; /* keep aside on the side for wider tablets */
+        gap:16px;
+      }
+
+      /* allow the aside to shrink and fit; make image responsive */
+      .hero-aside{max-width:220px;width:100%;overflow:hidden}
+      .hero-aside img{width:100%;height:auto;max-height:320px;object-fit:cover}
+
+      /* search inputs must be allowed to shrink (no min-width causing overflow) */
+      .search-row{display:flex;flex-wrap:wrap;gap:8px}
+      .search-row input,.search-row select{min-width:0;flex:1 1 auto}
+      .search-row .go{min-width:110px}
+
+      /* paragraph and lead must wrap and never exceed container */
+      .lead, p.muted, p.description{max-width:100%;overflow-wrap:break-word;word-break:break-word}
+
+      /* stats: ensure horizontal layout and allow scrolling if needed */
+      .stats{overflow:auto;flex-wrap:nowrap}
+      .stat{min-width:0;flex:0 0 auto}
+    }
+
+    /* section backgrounds */
+    section{background:transparent;padding:36px 0;margin:0 calc(-50vw + 50%);padding-left:calc(50vw - 50%);padding-right:calc(50vw - 50%)}
+    section .container-inner{max-width:var(--max-width);margin:0 auto;padding:0 20px}
+
+    .section-title{
+      background:linear-gradient(180deg,var(--golden-yellow) ,#ffffff 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      font-weight:900;
+      letter-spacing:-1px;
+      text-align:left;
+      margin:0 auto;
+      display:flex;
+      flex-direction:column;
+      
+    }
+
+    .section-title::after{
+      content:'';
+      width:300px;
+      height:3px;
+      background:linear-gradient(90deg,transparent,var(--golden-yellow),transparent);
+      margin-top:12px
+    }
+
+    /* carousel */
+    .carousel{display:flex;gap:14px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory;will-change:scroll-position;scroll-behavior:smooth}
+    
+    /* Modern scrollbar styling */
+    .carousel::-webkit-scrollbar{height:8px}
+    .carousel::-webkit-scrollbar-track{background:rgba(3,75,31,0.05);border-radius:10px}
+    .carousel::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--grass-green),var(--golden-yellow));border-radius:10px;transition:all 0.3s ease}
+    .carousel::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#034a1f,#FFD700);box-shadow:0 0 8px rgba(3,75,31,0.3)}
+    /* Make event cards snap to one-per-viewport on small screens */
+    @media (max-width:768px) {
+      /* make more room for the content-wrapper by slightly reducing carousel gutters
+         and reduce card sizes so neighboring cards peek */
+      .carousel{
+        gap:12px;
+        padding-left:4vw;
+        padding-right:4vw;
+        scroll-snap-type:x mandatory;
+        -webkit-overflow-scrolling:touch;
+      }
+
+      .magazine-card{
+        flex:0 0 72vw; /* smaller so next/prev peek more */
+        max-width:72vw;
+        scroll-snap-align:center;
+        box-sizing:border-box;
+      }
+    }
+
+    @media (max-width:480px) {
+      /* tighter gutters and smaller cards on phones */
+      .carousel{padding-left:3.5vw;padding-right:3.5vw;gap:10px}
+      .magazine-card{flex:0 0 68vw;max-width:68vw}
+    }
+    
+    
+    /* gallery */
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:28px 0}
+    .gallery img{width:100%;height:160px;object-fit:cover;border-radius:8px;cursor:pointer}
+    @media(max-width:980px){.gallery{grid-template-columns:repeat(2,1fr)}}
+
+    /* testimonials */
+    .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0}
+    .test{background:linear-gradient(90deg,transparent,rgb(255, 255, 255),transparent);padding:24px;border-radius:46px 0px;border:1px solid rgba(3,75,31,0.06);box-shadow:0 8px 32px rgba(3,75,31,0.06);transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);position:relative;overflow:hidden}
+    .test::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255,215,0,0.08),transparent 60%);pointer-events:none}
+    .test:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(3,75,31,0.12)}
+    .test strong{color:var(--forest-shadow);font-family:Recoleta;font-size:16px;display:block;margin-bottom:10px}
+    .test p{color:rgba(0,0,0,0.62);line-height:1.6;font-size:14px;font-style:italic}
+    .test p::before{content:'"';color:var(--golden-yellow);font-size:28px;position:absolute;margin-left:-12px;margin-top:-8px}
+    @media(max-width:980px){.testimonials{grid-template-columns:1fr}}
+
+    /*footer{padding:36px 0;background:linear-gradient(90deg,var(--grass-green),#044a25);color:var(--golden-yellow);margin-top:28px;border-top-left-radius:14px;border-top-right-radius:14px}
+
+    /* lightbox */
+    .lightbox{position:fixed;inset:0;background:rgba(2,6,23,0.85);display:flex;align-items:center;justify-content:center;z-index:120;opacity:0;pointer-events:none;transition:opacity .22s}
+    .lightbox.open{opacity:1;pointer-events:auto}
+    .lightbox img{max-width:92%;max-height:86%;border-radius:8px}
+
+    /* small helpers */
+    .muted{color:rgba(0,0,0,0.56)}
+    
+    p.muted{color:#ffffff;font-family:Recoleta,serif;font-weight:500;font-size:16px;line-height:1.7}
+
+    p.description{color:#000000;font-family:Recoleta,serif;font-weight:500;font-size:16px;line-height:1.7}
+
+    /* footer edge-to-edge */
+    footer{margin-left:calc(-50vw + 50%);margin-right:calc(-50vw + 50%);padding-left:calc(50vw - 50%);padding-right:calc(50vw - 50%)}
+
+    /* Hero button styling - reference to Gear-Up button */
+    .btn-cta {
+  background: linear-gradient(135deg,#ffffff,#079248) !important;
+  background-size: 200% 200% !important;
+  animation: gradientMove 6s ease infinite !important;
+  color: #262c35 !important;
+  font-family: Montserrat, sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  padding: 6px 14px !important;
+  border-radius: 20px !important;
+  border: none !important;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(21,88,52,0.1);
+  text-decoration: none !important; /* removes underline */
+  display: inline-block; /* ensures button-like behavior */
+  text-align: center; /* centers text inside the <a> tag */
+  white-space:nowrap;
+}
+
+
+    .btn-cta:hover{
+      transform:scale(1.05) translateY(-3px);
+      background:linear-gradient(135deg,#155834,#FFD700) !important;
+      color:#fff !important;
+      box-shadow:0 4px 12px rgba(21,88,52,0.25);
+    }
+
+    @keyframes gradientMove{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    /* Hero carousel fade animation */
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes fadeOut{from{opacity:1}to{opacity:0}}
+    .hero-bg-fade-in{animation:fadeIn 1.2s ease-in-out}
+    .hero-bg-fade-out{animation:fadeOut 1.2s ease-in-out}
+
+    /* Responsive tweaks for very small screens */
+    @media (max-width:480px) {
+      :root{--max-width:100%}
+      html,body{background-attachment:fixed}
+      .hero{
+        grid-template-columns:1fr;
+        min-height:48vh;
+        gap:6px;
+        padding-left:calc(50vw - 50%) !important;
+        padding-right:calc(50vw - 50%) !important;
+        margin-left:calc(-50vw + 50%) !important;
+        margin-right:calc(-50vw + 50%) !important;
+      }
+      .hero-left{padding:2px 0}
+      .hero-title{
+        font-size:30px;
+        line-height:1.02;
+        margin:3px 0;
+        word-break:break-word;
+      }
+      .lead{font-size:12px;max-width:100%}
+      /* Keep CTAs horizontal; extremely compact */
+      .hero-ctas{flex-direction:row;align-items:center;gap:6px;overflow:auto;padding-bottom:4px}
+      .hero-ctas .btn-cta{flex:0 0 auto;padding:4px 6px;border-radius:10px;font-size:11px}
+      /* hide search by default on very small screens */
+      .search-card{display:none !important}
+      .search-row{display:flex;flex-wrap:nowrap;gap:6px;align-items:center}
+      .search-row > div{flex:1 1 auto;min-width:0}
+      .search-row input,.search-row select{min-width:0}
+      .search-row .go{min-width:48px;flex:0 0 auto;width:auto;padding:4px 6px;font-size:11px}
+
+      /* Make search card extremely narrow if shown */
+      .search-card{max-width:100%;width:100%;padding:4px}
+      .search-row{gap:6px}
+      .search-row input,.search-row select{min-width:0;flex:1 1 auto}
+
+      /* further shrink hero-aside to fit below content */
+      .hero-aside{order:2;width:100%;max-width:240px;margin:6px auto}
+      .hero-aside img{width:100%;height:auto;max-height:120px;object-fit:cover}
+      .aside-meta{padding:5px}
+
+      /* extra-compact overlay stat boxes */
+      .overlay-stats{top:-14px;gap:4px;padding:0 6px}
+      .overlay-stat-box{padding:3px 5px;min-width:32px}
+      .overlay-stat-box .stat-value{font-size:10px}
+      .overlay-stat-box .stat-label{font-size:7px}
+
+      /* stats: ultra compact */
+      .stats{flex-wrap:nowrap;gap:6px;overflow:auto;justify-content:flex-start;padding:3px;border-radius:6px}
+      .stat{padding:3px 6px;white-space:nowrap;flex:0 0 auto;border-radius:6px}
+      .stat .num{font-size:10px}
+      .stat .label{font-size:8px}
+
+      section{margin-left:0;margin-right:0;padding-left:10px;padding-right:10px}
+      footer{margin-left:calc(-50vw + 50%);margin-right:calc(-50vw + 50%);padding-left:calc(50vw - 50%);padding-right:calc(50vw - 50%)}
+      .experiences{grid-template-columns:1fr}
+      .gallery img{height:80px}
+    }
+
+    /* Super-compact fallback for very narrow devices */
+    @media (max-width:360px) {
+      .hero-title{font-size:28px}
+      .lead{font-size:11px}
+      .hero-ctas .btn-cta{padding:3px 6px;font-size:10px}
+      .hero-aside img{height:120px}
+      .overlay-stat-box{min-width:28px;padding:2px 4px}
+      .overlay-stat-box .stat-value{font-size:9px}
+      .overlay-stat-box .stat-label{display:none}
+      .stat .num{font-size:9px}
+      .stat .label{font-size:8px;display:none}
+    }
+
+  </style>
+  <style>
+    /* Responsive tweaks for content wrapper and overlays */
+    /* Reduce section titles and decorative underline on small screens */
+    @media (max-width:980px) {
+      .section-title{font-size:40px !important}
+      .section-title::after{width:220px;height:3px;margin-top:10px}
+    }
+    @media (max-width:768px) {
+      .section-title{font-size:36px !important}
+      .section-title::after{width:180px;height:3px;margin-top:8px}
+    }
+    @media (max-width:480px) {
+      .section-title{font-size:30px !important}
+      .section-title::after{width:140px;height:2px;margin-top:8px}
+    }
+    @media (max-width:360px) {
+      .section-title{font-size:26px !important}
+      .section-title::after{width:120px;height:2px;margin-top:6px}
+    }
+    @media (max-width:980px) {
+      .content-wrapper{
+        margin:28px 10px 0 10px; /* narrower gutters to increase content width */
+        padding:0 10px;
+        border-radius:18px 18px 0 0;
+        margin-top:62px;
+        max-width:calc(100% - 20px);
+      }
+
+      .overlay-stats{top:-28px;gap:12px;padding:0 10px}
+    }
+
+    @media (max-width:768px) {
+      .content-wrapper{
+        margin:18px 8px 0 8px; /* increase width by reducing side margins */
+        padding:0 8px;
+        border-radius:14px 14px 0 0;
+        backdrop-filter:none; /* reduce blur on smaller devices for performance */
+        background:linear-gradient(135deg,rgba(0,0,0,0.35),rgba(42,44,40,0.28));
+        margin-top:56px;
+        max-width:calc(100% - 16px);
+      }
+
+      .overlay-stats{top:-26px;gap:10px;padding:0 8px}
+    }
+
+    @media (max-width:480px) {
+      .content-wrapper{
+        margin:12px 6px 0 6px; /* minimal gutters to maximize width on phones */
+        padding:0 6px;
+        border-radius:10px 10px 0 0;
+        margin-top:52px;
+        max-width:calc(100% - 12px);
+      }
+
+      .overlay-stats{
+        top:-16px;
+        left:8px;
+        transform:none;
+        justify-content:flex-start;
+        width:auto;
+        padding:0 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header with Logo, Business Name, and Navigation (Consistent with events.html) -->
+    <header>
+        <div class="header-container">
+            <div class="header-left">
+                <img src="https://res.cloudinary.com/dwpr0xrjq/image/upload/v1758725534/LOGO_WHITE_BG_harwpu.png" alt="Starkville Adventures Logo" class="logo">
+                <div class="brand-text">
+                    <h1>Starkville Adventures</h1>
+                    <div class="tagline">ADVENTURE &bull; PRESTIGE &bull; DISCOVERY</div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="social-icons">
+                    <a href="https://web.facebook.com/profile.php?id=61566137716599" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/starkvilleadventures?igsh=YzljYTk1ODg3Zg==" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@starkville.advent?_t=8qwrsPjZTGP&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="mailto:info@starkvilleadventures.co.ke"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sticky Navbar (Consistent with events.html) -->
+    <nav class="navbar">
+        <div class="menu-icon" aria-label="Toggle Menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="events.html">Hikes & Events</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+        <a href="Merch.html" class="book-now-btn">
+            <span class="btn-text">Gear-Up</span>
+            <i class="fas fa-shopping-cart"></i>
+        </a>
+    </nav>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="eyebrow">Premium curated trips</div>
+        <h1 class="hero-title">Discover Kenya</h1>
+        <p class="lead">Tailor-made safaris, dramatic hikes, intimate picnics and team-building retreats — crafted by locals, guided by professionals, remembered forever.</p>
+
+        <div class="hero-ctas">
+          <a href="events.html" class="btn-cta">Explore Adventures</a>
+          <a href="about.html" class="btn-cta">Learn More</a>
+        </div>
+
+        <div class="search-card" style="max-width:720px">
+          <form onsubmit="event.preventDefault();searchTrips()">
+            <div class="search-row">
+              <div style="flex:1">
+                <label class="muted" style="font-size:12px">Where to?</label>
+                <input id="where" placeholder="e.g. Maasai Mara, Aberdares" />
+              </div>
+              <div style="min-width:160px">
+                <label class="muted" style="font-size:12px">Experience</label>
+                <select id="type"><option>Safari</option><option>Hike</option><option>Picnic</option><option>Team Building</option></select>
+              </div>
+              <div style="display:flex;align-items:flex-end">
+                <button class="btn-cta go">Search</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- stats placed to be visible without scrolling -->
+        <div class="stats-wrap" aria-hidden="false">
+          <div class="stats" role="region" aria-label="Key stats">
+            <div class="stat"><div class="num">1,200+</div><div class="label">Happy travellers</div></div>
+            <div class="stat"><div class="num">25+</div><div class="label">Regions covered</div></div>
+            <div class="stat"><div class="num">10 yrs</div><div class="label">Local expertise</div></div>
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="hero-aside">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=9f1f7d4f2999b2e5f1a2d1f2a6d2b2ab" alt="Safari scene" loading="lazy">
+        <div class="aside-meta">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div class="aside-h1" style="background:var(--grass-green);color:var(--white);padding:6px 10px;border-radius:999px;display:inline-block">Maasai Mara</div>
+              <div class="aside-h2">Classic 3-day Safari</div>
+              <div class="aside-p1">Witness the Great Migration (seasonal)</div>
+            </div>
+            <div style="text-align:right">
+              <div class="aside-price">From KES 24,000</div>
+              <div class="aside-p2" style="font-size:13px">per person</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- CONTENT SECTIONS WRAPPER -->
+    <div class="content-wrapper">
+      
+      <!-- Overlay stat boxes -->
+      <div class="overlay-stats">
+        <div class="overlay-stat-box">
+          <div class="stat-value">P</div>
+          <div class="stat-label">Professionalism</div>
+        </div>
+        <div class="overlay-stat-box">
+          <div class="stat-value">E</div>
+          <div class="stat-label">Experience</div>
+        </div>
+        <div class="overlay-stat-box">
+          <div class="stat-value">A</div>
+          <div class="stat-label">Attentiveness</div>
+        </div>
+        <div class="overlay-stat-box">
+          <div class="stat-value">K</div>
+          <div class="stat-label">Knowledge</div>
+        </div>
+      </div>
+
+    <!-- FEATURED EVENTS -->
+<section id="destinations">
+  <div class="container" style="max-width:var(--max-width);margin:0 auto;padding:0 20px">
+    
+    <h2 class="section-title" style="font-family:Tangerine,serif;font-size:56px;color:var(--earth-brown);">
+      Featured Events
+    </h2>
+
+    <p class="muted" style="text-align:center;max-width:760px;margin:6px auto 18px;">
+      Memorable journeys, epic adventures, and moments that defined Starkville Adventures. 
+      See the highlights that made every experience unforgettable.
+    </p>
+
+    <div class="carousel" role="list">
+
+
+      <!-- ========================= -->
+      <!--        NAIVASHA EVENT     -->
+      <!-- ========================= -->
+      <article class="magazine-card">
+
+        <img src="https://res.cloudinary.com/dwpr0xrjq/image/upload/v1737112775/longonot_u3pwfq.jpg"
+             alt="Naivasha"
+             class="card-image"
+             loading="lazy">
+
+        <div class="card-overlay">
+
+          <div class="card-top">
+            <div class="card-badge">Naivasha</div>
+            <div class="card-actions">
+              <button class="action-btn"><i class="far fa-bookmark"></i></button>
+              <button class="action-btn"><i class="far fa-heart"></i></button>
+            </div>
+          </div>
+          <div class="header-content-one">
+            
+            <div class="title">Hike and Lake visit</div>
+            <div class="points">30 trail tokens + 25 Savannah Coins</div>
+            <div class="rating">
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+
+  <i class="fas fa-star-half-alt"></i>
+
+  
+</div>
+            
+            
+          </div>
+
+          <div class="header-content">
+            <div class="title">Crater & Lake</div>
+            <div class="subtitle">Full Day Adventure</div>
+            <div class="location"><i class="fas fa-map-marker-alt"></i> Mt Longonot & Lake Naivasha</div>
+          </div>
+
+          <div class="bottom-content">
+            <div class="rating"><i class="fas fa-star"></i>(37)</div>
+
+            <button class="card-btn">More <i class="fas fa-arrow-right"></i></button>
+          </div>
+
+        </div>
+      </article>
+
+
+
+      <!-- ========================= -->
+      <!--        HELLS GATE         -->
+      <!-- ========================= -->
+      <article class="magazine-card">
+
+        <img src="https://res.cloudinary.com/dwpr0xrjq/image/upload/v1764385121/hgate_n4oo45.jpg"
+             alt="Hells Gate Adventure"
+             class="card-image"
+             loading="lazy">
+
+        <div class="card-overlay">
+
+          <div class="card-top">
+            <div class="card-badge">Best</div>
+            <div class="card-actions">
+              <button class="action-btn"><i class="far fa-bookmark"></i></button>
+              <button class="action-btn"><i class="far fa-heart"></i></button>
+            </div>
+          </div>
+          <div class="header-content-one">
+            
+            <div class="title">Hells Gate</div>
+            <div class="points">25 Savannah Coins</div>
+            <div class="rating">
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+
+  <i class="fas fa-star"></i>
+
+  <i class="fas fa-star"></i> <!-- empty star -->
+</div>
+            
+
+            
+            
+          </div>
+
+          <div class="header-content">
+            <div class="title">Gorges and wildlife</div>
+            <div class="subtitle">Client Favorite</div>
+            <div class="location"><i class="fas fa-map-marker-alt"></i> Hells Gate National Park</div>
+          </div>
+
+          <div class="bottom-content">
+            <div class="rating"><i class="fas fa-star"></i>(56)</div>
+            <button class="card-btn">More <i class="fas fa-arrow-right"></i></button>
+          </div>
+
+        </div>
+      </article>
+
+
+
+      <!-- ========================= -->
+      <!--     NGONG HILLS EVENT     -->
+      <!-- ========================= -->
+      <article class="magazine-card">
+
+        <img src="https://res.cloudinary.com/dwpr0xrjq/image/upload/v1764163175/ngong_aidivc.jpg"
+             alt="Ngong Hills"
+             class="card-image"
+             loading="lazy">
+
+        <div class="card-overlay">
+
+          <div class="card-top">
+            <div class="card-badge">Hiking</div>
+            <div class="card-actions">
+              <button class="action-btn"><i class="far fa-bookmark"></i></button>
+              <button class="action-btn"><i class="far fa-heart"></i></button>
+            </div>
+          </div>
+          <div class="header-content-one">
+            
+            <div class="title">Ngong Hills</div>
+            <div class="points">20 Trail Tokens<tr>
+              <div class="rating">
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+
+  <i class="fas fa-star-half-alt"></i>
+
+  
+</div>
+
+
+            </tr></div>
+            
+            
+          </div>
+
+          <div class="header-content">
+            <div class="title">Moderate Hike</div>
+            <div class="subtitle">1-Day Trek</div>
+            <div class="location"><i class="fas fa-map-marker-alt"></i> Ngong Hills</div>
+          </div>
+
+          <div class="bottom-content">
+            <div class="rating"><i class="fas fa-star"></i>(74)</div>
+            <button class="card-btn"> More <i class="fas fa-arrow-right"></i></button>
+          </div>
+
+        </div>
+      </article>
+
+
+
+      <!-- ========================= -->
+      <!--     MAASAI MARA EVENT     -->
+      <!-- ========================= -->
+      <article class="magazine-card">
+
+        <img src="https://res.cloudinary.com/dwpr0xrjq/image/upload/v1764163015/masai-mara_kkarrw.jpg"
+             alt="Luxury Safari"
+             class="card-image"
+             loading="lazy">
+
+        <div class="card-overlay">
+
+          <div class="card-top">
+            <div class="card-badge">Safari</div>
+            <div class="card-actions">
+              <button class="action-btn"><i class="far fa-bookmark"></i></button>
+              <button class="action-btn"><i class="far fa-heart"></i></button>
+            </div>
+          </div>
+          <div class="header-content-one">
+            
+            <div class="title">Maasai Mara</div>
+            <div class="points">25 Savannah Coins</div>
+            <div class="rating">
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+
+  <i class="fas fa-star-half-alt"></i>
+
+  
+</div>
+            
+            
+          </div>
+
+          <div class="header-content">
+            <div class="title">Wild Exploration</div>
+            <div class="subtitle">Luxury Safari</div>
+            <div class="location"><i class="fas fa-map-marker-alt"></i> Maasai Mara National Reserve</div>
+          </div>
+
+          <div class="bottom-content">
+            <div class="rating"><i class="fas fa-star"></i>(15)</div>
+            
+
+            <button class="card-btn">More <i class="fas fa-arrow-right"></i></button>
+          </div>
+
+        </div>
+      </article>
+
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- EXPERIENCES -->
+    <!--<section id="experiences">
+      <div class="container" style="max-width:var(--max-width);margin:0 auto;padding:0 20px">
+      <h2 class="section-title" style="font-family:Tangerine,serif;font-size:56px;color:var(--earth-brown);">Our Services</h2>
+      <p class="muted" style="text-align:center;max-width:760px;margin:6px auto 18px;">At Starkville Adventures, every experience is crafted with precision, safety, and a deep love for the outdoors. Whether you seek quiet moments in nature or thrilling journeys through the wild, we offer curated adventures designed to inspire, refresh, and reconnect you with the world around you.</p>
+
+      <div class="experiences">
+        <div class="exp">
+          <img src="https://res.cloudinary.com/dwpr0xrjq/image/upload/v1728473466/safaris_sctl4a.jpg" alt="Safari icon" class="exp-icon">
+          <h4>Safaris</h4>
+          <p>Wildlife-driven routes with seasoned rangers.</p>
+        </div>
+        <div class="exp">
+          <img src="https://res.cloudinary.com/dwpr0xrjq/image/upload/v1735882180/EHILLS_weflfd.jpg" alt="Hike icon" class="exp-icon">
+          <h4>Hikes</h4>
+          <p>Short day hikes to multi-day treks across Kenya's hills.</p>
+        </div>
+        <div class="exp">
+          <img src="https://res.cloudinary.com/dwpr0xrjq/image/upload/v1728062921/cupidbg_xafjwt.jpg" alt="Picnic icon" class="exp-icon">
+          <h4>Picnics and Camping</h4>
+          <p>Curated picnic experiences in tranquil settings.</p>
+        </div>
+        <div class="exp">
+          <img src="https://res.cloudinary.com/dwpr0xrjq/image/upload/v1728648268/Team-Building-Packages_jwacyr.jpg" alt="Team building icon" class="exp-icon">
+          <h4>Team Building</h4>
+          <p>Custom corporate retreats focused on bonding & leadership.</p>
+        </div>
+      </div>
+      </div>
+    </section>-->
+    <!-- GALLERY -->
+    <!--<section id="gallery">
+      <div class="container" style="max-width:var(--max-width);margin:0 auto;padding:0 20px">
+      <h2 class="section-title" style="font-family:Tangerine,serif;font-size:56px;color:var(--earth-brown);">Gallery</h2>
+      <p class="muted" style="text-align:center;max-width:760px;margin:6px auto 18px;">Moments our guests captured.</p>
+      <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1508675801627-066ac4346a1f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1a2b3c4d5e6f7a8b9c0d" alt="gallery-1" onclick="openLightbox(this)" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1533681768193-06f64b3f9b6f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=2b3c4d5e6f7a8b9c0d1e" alt="gallery-2" onclick="openLightbox(this)" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3c4d5e6f7a8b9c0d1e2f" alt="gallery-3" onclick="openLightbox(this)" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=4d5e6f7a8b9c0d1e2f3a" alt="gallery-4" onclick="openLightbox(this)" loading="lazy">
+      </div>
+      </div>
+    </section>-->
+
+    <!-- REVIEWS -->
+    <section id="reviews">
+      <div class="container" style="max-width:var(--max-width);margin:0 auto;padding:0 20px">
+      <h2 class="section-title" style="font-family:Tangerine,serif;font-size:56px;color:var(--earth-brown);">Voices of Adventure</h2>
+      <div class="testimonials">
+        <div class="test"><strong>Jane K.</strong><p class="description">"Amazing guides and a flawless itinerary. The Maasai Mara safari was the highlight of our trip."</p></div>
+        <div class="test"><strong>Marcus D.</strong><p class="description">"Starkville's picnic setup was romantic and private — a perfect surprise."</p></div>
+        <div class="test"><strong>Corporate Team</strong><p class="description">"Our team left with stronger bonds and practical leadership takeaways."</p></div>
+      </div>
+      </div>
+    </section>
+
+    </div>
+    <!-- END CONTENT SECTIONS WRAPPER -->
+
+     <!-- WhatsApp Button -->
+    <a href="https://wa.me/+254789861332" class="whatsapp-button" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <!-- Footer -->
+<footer>
+    <div class="footer-container">
+        <!-- Useful Links -->
+        <div class="footer-column">
+            <h3>Useful Links</h3>
+            <ul>
+                <li><a href="itinerary.html">Itineraries</a></li>
+                <li><a href="refund.html">Refund Policy</a></li>
+                <li><a href="tnc.html">Terms and Conditions</a></li>
+                <li><a href="login.html">Membership</a></li>
+                <li><a href="faqs.html">FAQ'S</a></li>
+                <li><a href="https://chat.whatsapp.com/J034m55UMaICsRsxAOEfUq">Join our Whatsapp group</a></li>
+                <li><a href="">---</a></li>
+            </ul>
+            <h4>***</h4>
+        </div>
+
+        <!-- Newsletter Subscription -->
+        <div class="footer-column newsletter">
+            <h3>Subscribe to our Newsletter</h3>
+            <form>
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="footer-column contact-info">
+             <h3>Contact Us</h3>
+            <p>Call or SMS:</p>
+            <p><a href="tel:+254789861332">0789861332</a>/<a href="tel:+254718265014">0718265014</a></p>
+            <p>Location: Nairobi, Kenya</p>
+            <p>Business Number: BN-P7SAZJKQ</p>
+            <div class="social-icons">
+                <a href="https://web.facebook.com/profile.php?id=61566137716599" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/starkvilleadventures?igsh=YzljYTk1ODg3Zg==" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@starkville.advent?_t=8qwrsPjZTGP&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="mailto:info@starkvilleadventures.co.ke"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-column partnerships">
+        <!--
+        <h3>Partners & Sponsors</h3>
+        <div class="partners-logos">
+            <a href="https://sponsor1.com" target="_blank">
+                <img src="https://res.cloudinary.com/dwpr0xrjq/image/upload_v1736154448/sv_xcjg6h.png" alt="Sponsor 1 Logo">
+                
+            </a>
+            <a href="https://sponsor2.com" target="_blank">
+                <img src="https://res.cloudinary.com/dwpr0xrjq/image/upload_v1736154720/stv_fbaqnk.png" alt="Sponsor 2 Logo">
+            </a>
+            <a href="https://sponsor3.com" target="_blank">
+                <img src="https://res.cloudinary.com/dwpr0xrjq/image/upload_v1736154720/www_gflxhy.png" alt="Sponsor 3 Logo">
+            </a>
+        </div>
+    </div> 
+-->
+        <!-- Copyright Information -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 Starkville Industries. rights reserved</p>
+        </div>
+    </footer>
+
+  </main>
+
+  <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <img id="lbimg" src="" alt="lightbox" />
+  </div>
+
+  <script>
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  // ========== SCROLL REVEAL ==========
+  const magazineCards = document.querySelectorAll('.magazine-card');
+
+  const observerOptions = {
+    threshold: 0.25 // trigger when 25% of card is visible
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal');
+      }
+    });
+  }, observerOptions);
+
+  magazineCards.forEach(card => observer.observe(card));
+
+  // ========== HEART TOGGLE ==========
+  const heartButtons = document.querySelectorAll('.action-btn:nth-child(2)');
+
+  heartButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const icon = this.querySelector('i');
+
+      if (icon.classList.contains('far')) {
+        icon.classList.remove('far');
+        icon.classList.add('fas', 'liked');
+        this.classList.add('liked');
+      } else {
+        icon.classList.remove('fas', 'liked');
+        icon.classList.add('far');
+        this.classList.remove('liked');
+      }
+
+      setTimeout(() => this.classList.remove('liked'), 400);
+    });
+  });
+
+  // ========== BOOKMARK TOGGLE ==========
+  const bookmarkButtons = document.querySelectorAll('.action-btn:nth-child(1)');
+
+  bookmarkButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const icon = this.querySelector('i');
+
+      if (icon.classList.contains('far')) {
+        icon.classList.remove('far');
+        icon.classList.add('fas');
+      } else {
+        icon.classList.remove('fas');
+        icon.classList.add('far');
+      }
+
+      this.classList.add('liked');
+      setTimeout(() => this.classList.remove('liked'), 400);
+    });
+  });
+
+  // ========== CARD BUTTON SUCCESS ==========
+  const cardButtons = document.querySelectorAll('.card-btn');
+
+  cardButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const originalText = this.innerHTML;
+      this.innerHTML = '<i class="fas fa-check"></i> Success!';
+      this.style.background = '#27ae60';
+
+      setTimeout(() => {
+        this.innerHTML = originalText;
+        this.style.background = '';
+      }, 2000);
+    });
+  });
+});
+
+
+    // Hero carousel background images
+    const heroCarouselImages = [
+      'https://res.cloudinary.com/dwpr0xrjq/image/upload/v1727342200/bg_wy6ant.jpg',
+      'https://res.cloudinary.com/dwpr0xrjq/image/upload/v1687208279/Untitled_design1_qpriow.png',
+      'https://res.cloudinary.com/dwpr0xrjq/image/upload/v1687189585/samples/landscapes/nature-mountains.jpg',
+      'https://res.cloudinary.com/dwpr0xrjq/image/upload/v1687189580/samples/landscapes/beach-boat.jpg'
+    ];
+    
+    let currentImageIndex = 0;
+    const heroSection = document.querySelector('.hero');
+    
+    function setBackgroundImage(index){
+      const imageUrl = heroCarouselImages[index];
+      heroSection.style.backgroundImage = `url('${imageUrl}')`;
+    }
+    
+    function rotateHeroBackground(){
+      currentImageIndex = (currentImageIndex + 1) % heroCarouselImages.length;
+      setBackgroundImage(currentImageIndex);
+    }
+    
+    // Initialize first background
+    window.addEventListener('load', function(){
+      setBackgroundImage(0);
+    });
+    
+    // Change background every 5 seconds
+    setInterval(rotateHeroBackground, 5000);
+
+    // Mobile menu
+    function toggleMobile(){
+      const nav = document.querySelector('.nav-links');
+      const btn = document.querySelector('.hamburger');
+      if(nav.style.display === 'flex'){nav.style.display='none';btn.setAttribute('aria-expanded','false')}else{nav.style.display='flex';nav.style.flexDirection='column';nav.style.background='transparent';nav.style.padding='12px';nav.style.borderRadius='12px';btn.setAttribute('aria-expanded','true')}
+    }
+
+    function scrollToSection(id){
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
+    function searchTrips() {
+  const where = document.getElementById('where').value || 'Kenya';
+  const type = document.getElementById('type').value;
+
+  alert(`Searching for ${type} trips near: ${where}
+(Example UI — replace with your booking integration)`);
+}
+
+    // Toggle heart icon on cards
+    function toggleHeart(event){
+      event.stopPropagation();
+      const heart = event.currentTarget;
+      const icon = heart.querySelector('i');
+      heart.classList.toggle('liked');
+      icon.classList.toggle('far');
+      icon.classList.toggle('fas');
+    }
+
+
+    // Gallery lightbox
+    function openLightbox(img){
+      const lb = document.getElementById('lightbox');
+      const lbimg = document.getElementById('lbimg');
+      lbimg.src = img.src.replace(/w=1200|w=1000|w=1200/,'w=2000');
+      lb.classList.add('open');
+    }
+    function closeLightbox(e){
+      if(e.target.id === 'lbimg') return;
+      document.getElementById('lightbox').classList.remove('open');
+    }
+
+    // Small accessibility: close with Esc
+    document.addEventListener('keydown', function(e){if(e.key==='Escape') document.getElementById('lightbox').classList.remove('open')});
+
+    // Carousel: Use native scroll snapping instead of JavaScript wheel handling
+    // This prevents browser/JS conflicts that cause freezing during scroll
+
+  </script>
+</body>
+</html>

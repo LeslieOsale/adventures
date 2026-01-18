@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starkville Admin - Blog Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fbd93f 60%, #087139 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+        }
+        .sidebar {
+            width: 260px;
+            background: #fff;
+            box-shadow: 2px 0 16px rgba(8,113,57,0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 32px 0 0 0;
+        }
+        .sidebar .logo {
+            width: 110px;
+            margin-bottom: 18px;
+        }
+        .sidebar h2 {
+            font-family: 'Tangerine', cursive;
+            font-size: 2.1rem;
+            color: #087139;
+            margin-bottom: 8px;
+        }
+        .sidebar .admin-nav {
+            margin-top: 24px;
+            width: 100%;
+        }
+        .sidebar .admin-nav a {
+            display: block;
+            padding: 12px 32px;
+            color: #1a237e;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.08rem;
+            border-radius: 8px 0 0 8px;
+            margin-bottom: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .sidebar .admin-nav a.active, .sidebar .admin-nav a:hover {
+            background: #fbd93f;
+            color: #087139;
+        }
+        .admin-main {
+            flex: 1;
+            padding: 40px 5vw;
+            background: rgba(255,255,255,0.85);
+            min-height: 100vh;
+        }
+        .admin-header {
+            text-align: left;
+            color: #087139;
+            font-size: 2rem;
+            font-family: 'Tangerine', cursive;
+            margin-bottom: 18px;
+        }
+        form {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(8,113,57,0.07);
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-bottom: 32px;
+        }
+        label {
+            font-weight: 600;
+            color: #087139;
+        }
+        input, textarea, select {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1.5px solid #08713933;
+            font-size: 1rem;
+            font-family: inherit;
+            background: #f9f9f9;
+        }
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        .admin-btn {
+            background: linear-gradient(90deg, #fbd93f 60%, #087139 100%);
+            color: #1a237e;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 28px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            margin-top: 10px;
+        }
+        .admin-btn:hover {
+            background: linear-gradient(90deg, #087139 60%, #fbd93f 100%);
+            color: #fff;
+        }
+        .blog-list {
+            margin-top: 0;
+        }
+        .blog-item {
+            background: #f9f9f9;
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 8px rgba(8,113,57,0.07);
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+        }
+        .blog-item img {
+            max-width: 90px;
+            border-radius: 8px;
+            margin-right: 12px;
+        }
+        .blog-item-details {
+            flex: 1;
+        }
+        .blog-item-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #087139;
+            margin-bottom: 4px;
+        }
+        .blog-item-meta {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        .blog-item-excerpt {
+            font-size: 1rem;
+            color: #222;
+        }
+        .delete-btn {
+            background: #e53935;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 16px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+        .delete-btn:hover {
+            background: #b71c1c;
+        }
+        @media (max-width: 900px) {
+            .sidebar { width: 180px; }
+            .admin-main { padding: 24px 2vw; }
+        }
+        @media (max-width: 700px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; flex-direction: row; justify-content: center; padding: 18px 0; }
+            .admin-main { padding: 12px 2vw; }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <img src="https://res.cloudinary.com/dwpr0xrjq/image/upload/v1758725534/LOGO_WHITE_BG_harwpu.png" alt="Starkville Adventures Logo" class="logo">
+        <h2>Starkville Admin</h2>
+        <nav class="admin-nav">
+            <a href="#blog" class="active"><i class="fas fa-blog"></i> Blog Management</a>
+            <a href="#events"><i class="fas fa-calendar-alt"></i> Events</a>
+            <a href="#"><i class="fas fa-users"></i> Members</a>
+            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+        </nav>
+    </div>
+    <div class="admin-main">
+        <div id="blog" class="admin-header">Blog Management</div>
+        <form id="blogForm">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+                <option value="Safari Guide">Safari Guide</option>
+                <option value="Hiking">Hiking</option>
+                <option value="Culture">Culture</option>
+                <option value="Beach">Beach</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author" required>
+
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="image">Image URL</label>
+            <input type="url" id="image" name="image" required>
+
+            <label for="excerpt">Excerpt</label>
+            <textarea id="excerpt" name="excerpt" required></textarea>
+
+            <label for="content">Content</label>
+            <textarea id="content" name="content" required></textarea>
+
+            <button type="submit" class="admin-btn">Add / Update Blog Post</button>
+        </form>
+        <div class="blog-list" id="blogList">
+            <!-- Blog posts will be listed here -->
+        </div>
+
+        <div id="events" class="admin-header" style="margin-top:48px;">Events Management</div>
+        <form id="eventForm">
+            <label for="eventTitle">Event Title</label>
+            <input type="text" id="eventTitle" name="eventTitle" required>
+
+            <label for="eventDate">Date</label>
+            <input type="date" id="eventDate" name="eventDate" required>
+
+            <label for="eventLocation">Location</label>
+            <input type="text" id="eventLocation" name="eventLocation" required>
+
+            <label for="eventImage">Image URL</label>
+            <input type="url" id="eventImage" name="eventImage" required>
+
+            <label for="eventDescription">Description</label>
+            <textarea id="eventDescription" name="eventDescription" required></textarea>
+
+            <button type="submit" class="admin-btn">Add / Update Event</button>
+        </form>
+        <div class="blog-list" id="eventList">
+            <!-- Events will be listed here -->
+        </div>
+    </div>
+    <script>
+    // Simple localStorage-based blog management
+    const blogForm = document.getElementById('blogForm');
+    const blogList = document.getElementById('blogList');
+    const eventForm = document.getElementById('eventForm');
+    const eventList = document.getElementById('eventList');
+
+    // Blog functions
+    function getBlogs() {
+        return JSON.parse(localStorage.getItem('blogs') || '[]');
+    }
+    function saveBlogs(blogs) {
+        localStorage.setItem('blogs', JSON.stringify(blogs));
+    }
+    function renderBlogs() {
+        const blogs = getBlogs();
+        blogList.innerHTML = blogs.map((blog, idx) => `
+            <div class="blog-item">
+                <img src="${blog.image}" alt="${blog.title}">
+                <div class="blog-item-details">
+                    <div class="blog-item-title">${blog.title}</div>
+                    <div class="blog-item-meta">${blog.category} | ${blog.author} | ${blog.date}</div>
+                    <div class="blog-item-excerpt">${blog.excerpt}</div>
+                    <button class="delete-btn" onclick="deleteBlog(${idx})">Delete</button>
+                </div>
+            </div>
+        `).join('');
+    }
+    blogForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const blog = {
+            title: blogForm.title.value,
+            category: blogForm.category.value,
+            author: blogForm.author.value,
+            date: blogForm.date.value,
+            image: blogForm.image.value,
+            excerpt: blogForm.excerpt.value,
+            content: blogForm.content.value
+        };
+        const blogs = getBlogs();
+        blogs.unshift(blog); // Add to top
+        saveBlogs(blogs);
+        renderBlogs();
+        blogForm.reset();
+    });
+    window.deleteBlog = function(idx) {
+        const blogs = getBlogs();
+        blogs.splice(idx, 1);
+        saveBlogs(blogs);
+        renderBlogs();
+    };
+
+    // Events functions
+    function getEvents() {
+        return JSON.parse(localStorage.getItem('events') || '[]');
+    }
+    function saveEvents(events) {
+        localStorage.setItem('events', JSON.stringify(events));
+    }
+    function renderEvents() {
+        const events = getEvents();
+        eventList.innerHTML = events.map((event, idx) => `
+            <div class="blog-item">
+                <img src="${event.image}" alt="${event.title}">
+                <div class="blog-item-details">
+                    <div class="blog-item-title">${event.title}</div>
+                    <div class="blog-item-meta">${event.date} | ${event.location}</div>
+                    <div class="blog-item-excerpt">${event.description}</div>
+                    <button class="delete-btn" onclick="deleteEvent(${idx})">Delete</button>
+                </div>
+            </div>
+        `).join('');
+    }
+    eventForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const event = {
+            title: eventForm.eventTitle.value,
+            date: eventForm.eventDate.value,
+            location: eventForm.eventLocation.value,
+            image: eventForm.eventImage.value,
+            description: eventForm.eventDescription.value
+        };
+        const events = getEvents();
+        events.unshift(event); // Add to top
+        saveEvents(events);
+        renderEvents();
+        eventForm.reset();
+    });
+    window.deleteEvent = function(idx) {
+        const events = getEvents();
+        events.splice(idx, 1);
+        saveEvents(events);
+        renderEvents();
+    };
+
+    // Initial render
+    renderBlogs();
+    renderEvents();
+    </script>
+</body>
+</html>
