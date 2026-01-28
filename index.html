@@ -16,27 +16,21 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Starkville Adventures — Discover Kenya</title>
   <meta name="description" content="Premium curated hikes, safaris, picnics and team-building trips across Kenya." />
-  <meta name="google-site-verification" content="FFE1-sj5EFkgIEgiKEUhO28XieWk7O8nysHWLlBVGY0" />
-
   <link rel="icon" href="https://res.cloudinary.com/dwpr0xrjq/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1758725534/LOGO_WHITE_BG_harwpu.png">
-
 
   <!-- Preload critical images -->
   <link rel="preload" as="image" href="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=9f1f7d4f2999b2e5f1a2d1f2a6d2b2ab" fetchpriority="high">
   <link rel="preload" as="image" href="https://res.cloudinary.com/dwpr0xrjq/image/upload/v1727342200/bg_wy6ant.jpg" fetchpriority="high">
   <link rel="preload" as="image" href="https://res.cloudinary.com/dwpr0xrjq/image/upload/v1758725534/LOGO_WHITE_BG_harwpu.png">
-  <link rel="preload" as="image" href="">
   <link rel="preload" as="image" href="https://res.cloudinary.com/dwpr0xrjq/image/upload/v1737112775/longonot_u3pwfq.jpg">
   <link rel="preload" as="image" href="https://res.cloudinary.com/dwpr0xrjq/image/upload/v1764385121/hgate_n4oo45.jpg">
-
+  
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Recoleta&family=Tangerine:wght@700&display=swap" rel="stylesheet">
   <link rel="preload" href="styles.css" as="style">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="style2.css">
   <link rel="stylesheet" href="card.css">
-  
-
   <script src="ui.js"></script>
 <script src="other.js"></script>
 
@@ -299,6 +293,273 @@
     .lightbox{position:fixed;inset:0;background:rgba(2,6,23,0.85);display:flex;align-items:center;justify-content:center;z-index:120;opacity:0;pointer-events:none;transition:opacity .22s}
     .lightbox.open{opacity:1;pointer-events:auto}
     .lightbox img{max-width:92%;max-height:86%;border-radius:8px}
+
+    /* Adventure Modal */
+    .adventure-modal {
+      position: fixed;
+      left: -400px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 360px;
+      height: auto;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 200;
+      transition: left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+      padding: 32px 28px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .adventure-modal.open {
+      left: 0;
+    }
+
+    .adventure-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--golden-yellow);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: all 0.3s ease;
+      z-index: 201;
+      backdrop-filter: blur(10px);
+    }
+
+    .adventure-modal-close:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: rotate(90deg);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .adventure-modal-content {
+      text-align: center;
+      color: var(--golden-yellow);
+      animation: slideInContent 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      max-width: 300px;
+    }
+
+    .adventure-modal-content h2 {
+      font-family: Tangerine, serif;
+      font-size: 36px;
+      margin: 0 0 16px 0;
+      color: var(--golden-yellow);
+      text-shadow: 0 2px 8px rgba(2, 6, 23, 0.2);
+      font-weight: 700;
+    }
+
+    .adventure-modal-content p {
+      font-family: Recoleta, serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .adventure-modal::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(255, 215, 0, 0.03), transparent 70%);
+      pointer-events: none;
+      border-radius: 20px;
+    }
+
+    @keyframes slideInContent {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* News Modals - Stacked on left */
+    .news-modal {
+      position: fixed;
+      left: -380px;
+      width: 340px;
+      height: auto;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      z-index: 190;
+      transition: left 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+      padding: 20px 22px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .news-modal.show {
+      left: 20px;
+    }
+
+    .news-modal.bounce-out {
+      animation: bounceOut 0.5s ease-out forwards;
+    }
+
+    #newsModal1 {
+      top: 40px;
+    }
+
+    #newsModal2 {
+      top: 220px;
+    }
+
+    .news-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--golden-yellow);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .news-modal-close:hover {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: rotate(90deg);
+    }
+
+    .news-modal-content {
+      color: var(--golden-yellow);
+      animation: slideInContent 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .news-modal-content p {
+      font-family: Recoleta, serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.88);
+      font-weight: 500;
+      margin: 0;
+    }
+
+    @keyframes bounceOut {
+      0% {
+        left: 20px;
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        left: -380px;
+        opacity: 0;
+        transform: scale(0.8);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .news-modal {
+        width: 90%;
+        left: -100%;
+        padding: 16px 18px;
+        max-width: 320px;
+      }
+
+      .news-modal.show {
+        left: 5%;
+      }
+
+      .news-modal:nth-child(1) {
+        top: 20px;
+      }
+
+      .news-modal:nth-child(2) {
+        top: 200px;
+      }
+
+      .news-modal-content p {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .adventure-modal {
+        width: 100%;
+        left: -100%;
+        padding: 30px 20px;
+      }
+
+      .adventure-modal-content h2 {
+        font-size: 40px;
+        margin: 0 0 20px 0;
+      }
+
+      .adventure-modal-content p {
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      .adventure-modal-close {
+        top: 15px;
+        right: 15px;
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .adventure-modal {
+        width: 100%;
+        left: -100%;
+        padding: 25px 15px;
+      }
+
+      .adventure-modal-content h2 {
+        font-size: 32px;
+        margin: 0 0 16px 0;
+      }
+
+      .adventure-modal-content p {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+    }
 
     /* small helpers */
     .muted{color:rgba(0,0,0,0.56)}
@@ -569,7 +830,7 @@
             <li><a href="blog.html">Blog</a></li>
             <li><a href="contact.html">Contact Us</a></li>
         </ul>
-        <a href="merch.html" class="book-now-btn">
+        <a href="Merch.html" class="book-now-btn">
             <span class="btn-text">Gear-Up</span>
             <i class="fas fa-shopping-cart"></i>
         </a>
@@ -592,12 +853,12 @@
           <form onsubmit="event.preventDefault();searchTrips()">
             <div class="search-row">
               <div style="flex:1">
-                <label class="muted" style="font-size:12px">Where to?</label>
-                <input id="where" placeholder="e.g. Maasai Mara, Aberdares" />
+                <label class="muted" style="font-size:12px"> Experience </label>
+                <select id="type"><option>Safari</option><option>Hike</option><option>Picnic</option><option>Team Building</option></select>
               </div>
               <div style="min-width:160px">
-                <label class="muted" style="font-size:12px">Experience</label>
-                <select id="type"><option>Safari</option><option>Hike</option><option>Picnic</option><option>Team Building</option></select>
+                <label class="muted" style="font-size:12px">Difficulty</label>
+                <select id="difficulty"><option>Beginner</option><option>Intermediate</option><option>Pro</option></select>
               </div>
               <div style="display:flex;align-items:flex-end">
                 <button class="btn-cta go">Search</button>
@@ -980,7 +1241,7 @@
                 <li><a href="login.html">Membership</a></li>
                 <li><a href="faqs.html">FAQ'S</a></li>
                 <li><a href="https://chat.whatsapp.com/FHCDjUc6TRyETHxDNio2eh?mode=hqrt1">Join our Whatsapp group</a></li>
-                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="Privacy.html">Privacy Policy</a></li>
             </ul>
             <h4>***</h4>
         </div>
@@ -1033,6 +1294,30 @@
     </footer>
 
   </main>
+
+  <!-- News Modals -->
+  <div id="newsModal1" class="news-modal">
+    <button class="news-modal-close" onclick="closeNewsModal(this.closest('.news-modal'))">&times;</button>
+    <div class="news-modal-content">
+      <p>Your dose of adventure awaits! Make sure to send your confirmation after booking.</p>
+    </div>
+  </div>
+
+  <div id="newsModal2" class="news-modal">
+    <button class="news-modal-close" onclick="closeNewsModal(this.closest('.news-modal'))">&times;</button>
+    <div class="news-modal-content">
+      <p>We're fine-tuning our website! In the meantime, book your adventure the easy way: email or WhatsApp.</p>
+    </div>
+  </div>
+
+  <!-- Adventure Modal -->
+  <div id="adventureModal" class="adventure-modal">
+    <button class="adventure-modal-close" onclick="closeAdventureModal()">&times;</button>
+    <div class="adventure-modal-content">
+      <h2>Event Matched🎊</h2>
+      <p>Adventure starts now! Explore our curated events or build your own path—every journey is yours to claim.</p>
+    </div>
+  </div>
 
   <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
     <img id="lbimg" src="" alt="lightbox" />
@@ -1164,12 +1449,81 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function searchTrips() {
-  const where = document.getElementById('where').value || 'Kenya';
-  const type = document.getElementById('type').value;
-
-  alert(`Searching for ${type} trips near: ${where}
-(Example UI — replace with your booking integration)`);
+  openAdventureModal();
 }
+
+    function openAdventureModal() {
+      const modal = document.getElementById('adventureModal');
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden'; // prevent scrolling
+    }
+
+    function closeAdventureModal() {
+      const modal = document.getElementById('adventureModal');
+      modal.classList.remove('open');
+      document.body.style.overflow = 'auto'; // restore scrolling
+    }
+
+    // Close modal when clicking outside (on the main content area)
+    document.addEventListener('click', function(e) {
+      const modal = document.getElementById('adventureModal');
+      if (modal && modal.classList.contains('open') && !modal.contains(e.target)) {
+        closeAdventureModal();
+      }
+    });
+
+    // ========== NEWS MODALS ==========
+    function initNewsModals() {
+      const newsModal1 = document.getElementById('newsModal1');
+      const newsModal2 = document.getElementById('newsModal2');
+
+      // Show first modal after 2 seconds of page load
+      setTimeout(() => {
+        if (newsModal1) {
+          newsModal1.classList.add('show');
+          // Auto-dismiss first modal after 5 seconds
+          setTimeout(() => {
+            newsModal1.classList.add('bounce-out');
+            setTimeout(() => {
+              newsModal1.classList.remove('show', 'bounce-out');
+            }, 500);
+          }, 5000);
+        }
+      }, 1500);
+
+      // Show second modal after first one starts to disappear
+      setTimeout(() => {
+        if (newsModal2) {
+          newsModal2.classList.add('show');
+          // Auto-dismiss second modal after 5 seconds
+          setTimeout(() => {
+            newsModal2.classList.add('bounce-out');
+            setTimeout(() => {
+              newsModal2.classList.remove('show', 'bounce-out');
+            }, 500);
+          }, 5000);
+        }
+      }, 7200);
+    }
+
+    function closeNewsModal(modal) {
+      modal.classList.add('bounce-out');
+      setTimeout(() => {
+        modal.classList.remove('show', 'bounce-out');
+      }, 500);
+    }
+
+    // Initialize news modals on window load (after all resources load)
+    if (document.readyState === 'loading') {
+      window.addEventListener('load', function() {
+        console.log('Page loaded, showing news modals');
+        initNewsModals();
+      });
+    } else {
+      // Page already loaded
+      console.log('Page already loaded, showing news modals');
+      initNewsModals();
+    }
 
     // Toggle heart icon on cards
     function toggleHeart(event){
@@ -1331,8 +1685,3 @@ document.addEventListener('DOMContentLoaded', function() {
   </script>
 </body>
 </html>
-
-
-
-
-
