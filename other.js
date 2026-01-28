@@ -98,7 +98,7 @@
 
                 // Email envelope fields for internal notification
                 to_name: 'Starkville Adventures',
-                to_email: 'starkvilleadventures@gmail.com',
+                to_email: 'managingdirector@starkvilleadventures.co.ke',
                 from_email: clientEmail,  // Use client's email as sender
                 reply_to: clientEmail,
                 
@@ -2170,4 +2170,5 @@ try {
 } catch (err) {
     console.warn('SSE not available in this environment:', err);
 }
+
     
