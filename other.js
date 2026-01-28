@@ -2170,5 +2170,147 @@ try {
 } catch (err) {
     console.warn('SSE not available in this environment:', err);
 }
+    
 
+
+
+        // ========== LOCAL STORAGE FOR LIKED ITEMS ==========
+        const LIKED_ITEMS_KEY = 'starkville_liked_events';
+        
+        function initLikedHearts() {
+            const likedItems = JSON.parse(localStorage.getItem(LIKED_ITEMS_KEY)) || [];
+            document.querySelectorAll('.event-card').forEach((card, index) => {
+                if (likedItems.includes(index)) {
+                    const likeBtn = card.querySelector('.like-btn i');
+                    if (likeBtn) {
+                        likeBtn.classList.remove('far');
+                        likeBtn.classList.add('fas');
+                        card.querySelector('.like-btn').classList.add('liked');
+                    }
+                }
+            });
+        }
+
+        function setupHeartListeners() {
+            document.querySelectorAll('.like-btn').forEach((btn, index) => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const icon = this.querySelector('i');
+                    const likedItems = JSON.parse(localStorage.getItem(LIKED_ITEMS_KEY)) || [];
+
+                    if (icon.classList.contains('far')) {
+                        // Add to liked
+                        icon.classList.remove('far');
+                        icon.classList.add('fas');
+                        this.classList.add('liked');
+                        if (!likedItems.includes(index)) {
+                            likedItems.push(index);
+                        }
+                    } else {
+                        // Remove from liked
+                        icon.classList.remove('fas');
+                        icon.classList.add('far');
+                        this.classList.remove('liked');
+                        likedItems = likedItems.filter(i => i !== index);
+                    }
+
+                    localStorage.setItem(LIKED_ITEMS_KEY, JSON.stringify(likedItems));
+                });
+            });
+        }
+
+        // ========== LOCAL STORAGE FOR FORM DATA ==========
+        const USER_INFO_KEY = 'starkville_user_info';
+        const FORM_FIELDS = [
+            'client-name', 'safari-client-name', 'team-client-name',
+            'whatsapp', 'safari-whatsapp', 'team-whatsapp',
+            'email', 'safari-email', 'team-email'
+        ];
+
+        function saveFormData(formElement) {
+            const userInfo = {};
+            FORM_FIELDS.forEach(fieldId => {
+                const field = formElement.querySelector(`#${fieldId}`);
+                if (field) {
+                    userInfo[fieldId] = field.value;
+                }
+            });
+            localStorage.setItem(USER_INFO_KEY, JSON.stringify(userInfo));
+        }
+
+        function restoreFormData() {
+            const userInfo = JSON.parse(localStorage.getItem(USER_INFO_KEY)) || {};
+            FORM_FIELDS.forEach(fieldId => {
+                const field = document.querySelector(`#${fieldId}`);
+                if (field && userInfo[fieldId]) {
+                    field.value = userInfo[fieldId];
+                }
+            });
+        }
+
+        function setupFormAutoSave() {
+            document.querySelectorAll('.quote-form').forEach(form => {
+                // Restore data on form load
+                FORM_FIELDS.forEach(fieldId => {
+                    const field = form.querySelector(`#${fieldId}`);
+                    if (field) {
+                        const userInfo = JSON.parse(localStorage.getItem(USER_INFO_KEY)) || {};
+                        if (userInfo[fieldId]) {
+                            field.value = userInfo[fieldId];
+                        }
+                        // Save on input change
+                        field.addEventListener('change', () => saveFormData(form));
+                        field.addEventListener('blur', () => saveFormData(form));
+                    }
+                });
+                
+                // Also save on form input events
+                form.addEventListener('input', () => saveFormData(form));
+            });
+
+            // Also handle booking modal form
+            const bookingForm = document.querySelector('#modalBookingForm');
+            if (bookingForm) {
+                const bookingFields = ['modalFullName', 'modalPhone'];
+                bookingFields.forEach(fieldId => {
+                    const field = document.querySelector(`#${fieldId}`);
+                    if (field) {
+                        const userInfo = JSON.parse(localStorage.getItem(USER_INFO_KEY)) || {};
+                        
+                        // Map booking form fields to general user info
+                        if (fieldId === 'modalFullName' && userInfo['client-name']) {
+                            field.value = userInfo['client-name'];
+                        }
+                        if (fieldId === 'modalPhone' && userInfo['whatsapp']) {
+                            field.value = userInfo['whatsapp'];
+                        }
+                        
+                        field.addEventListener('change', () => {
+                            const info = JSON.parse(localStorage.getItem(USER_INFO_KEY)) || {};
+                            if (fieldId === 'modalFullName') info['client-name'] = field.value;
+                            if (fieldId === 'modalPhone') info['whatsapp'] = field.value;
+                            localStorage.setItem(USER_INFO_KEY, JSON.stringify(info));
+                        });
+                    }
+                });
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initLikedHearts();
+            setupHeartListeners();
+            restoreFormData();
+            setupFormAutoSave();
+        });
+
+        // Also initialize when modals are shown
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('quote-btn') || e.target.closest('.quote-btn')) {
+                setTimeout(() => {
+                    restoreFormData();
+                    setupFormAutoSave();
+                }, 100);
+            }
+        });
     
