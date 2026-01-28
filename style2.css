@@ -2740,6 +2740,40 @@
     .event-card {
         width: 100%;
     }
+
+    /* Make event-content scrollable on small screens */
+    .event-content {
+        max-height: 65%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-right: 8px;
+    }
+
+    /* Custom scrollbar for hidden content */
+    .event-content::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .event-content::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+    }
+
+    .event-content::-webkit-scrollbar-thumb {
+        background: rgba(255, 215, 0, 0.5);
+        border-radius: 10px;
+        transition: background 0.3s ease;
+    }
+
+    .event-content::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 215, 0, 0.8);
+    }
+
+    /* Firefox scrollbar */
+    .event-content {
+        scrollbar-color: rgba(255, 215, 0, 0.5) rgba(255, 255, 255, 0.1);
+        scrollbar-width: thin;
+    }
 }
 
 /* -------------------------------------------------------
