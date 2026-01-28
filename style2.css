@@ -2744,6 +2744,7 @@
     /* Make event-content scrollable on small screens */
     .event-content {
         max-height: 90%;
+        min-height:40%
         overflow-y: auto;
         overflow-x: hidden;
         padding-right: 8px;
@@ -2971,4 +2972,5 @@
    PREVIOUS EVENT CARD STYLE (COMMENTED OUT)
 
    
+
 
