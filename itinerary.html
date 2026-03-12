@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Starkville Adventures · Mt. Longonot</title>
+    <!-- Google Fonts: Tangerine + Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+    <style>
+        /* reset & base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background-color: #2C5F2D; /* fallback jungle */
+            /* background image - REPLACE THIS URL WITH YOUR IMAGE */
+            background-image: url('https://res.cloudinary.com/dwpr0xrjq/image/upload/v1768720504/mt_longonot_ldke9r.jpg');
+            background-size: cover;
+            background-position: center 30%;
+            background-attachment: fixed; /* creates parallax effect */
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            position: relative;
+        }
+
+        /* overlay for better text contrast */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 95, 45, 0.25); /* jungle green tint */
+            backdrop-filter: blur(3px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* main glass card container */
+        .glass-card {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            width: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.25) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 3rem 3rem 2rem 2rem;
+            border: 2px solid rgba(249, 224, 118, 0.5);
+            box-shadow:
+                0 35px 60px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            padding: 2rem 1.8rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(0);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 45px 80px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        /* inner content with extra glass for readability */
+        .content-inner {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.4) 100%);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border-radius: 2.5rem 2.5rem 1.8rem 1.8rem;
+            padding: 1.8rem 1.5rem;
+            border: 1px solid rgba(250, 169, 22, 0.5);
+            box-shadow:
+                0 15px 35px rgba(44, 95, 45, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-inner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 80% 20%, rgba(249, 224, 118, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* typography with tangerine & sunset */
+        h1, h2, h3, .tangerine {
+            font-family: 'Tangerine', cursive;
+            font-weight: 700;
+            color: #F15A24; /* tangerine */
+            text-shadow: 2px 2px 0 rgba(249, 224, 118, 0.5);
+        }
+
+        h1 {
+            font-size: clamp(3rem, 15vw, 5.5rem);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            color: #F9E076; /* sunset yellow for main title */
+            text-shadow: 4px 4px 0 #2C5F2D, 6px 6px 0 rgba(0,0,0,0.3);
+            letter-spacing: 2px;
+        }
+
+        h1 span {
+            font-size: clamp(1.2rem, 5vw, 2rem);
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            display: block;
+            color: white;
+            text-shadow: 2px 2px 0 #2C5F2D;
+            margin-top: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 8vw, 3.2rem);
+            border-bottom: 3px solid #F9E076;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            padding-right: 1rem;
+        }
+
+        h3 {
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            margin-bottom: 0.3rem;
+        }
+
+        /* date chip */
+        .date-chip {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(250, 169, 22, 0.8) 0%, rgba(250, 169, 22, 1) 100%);
+            backdrop-filter: blur(8px) saturate(160%);
+            -webkit-backdrop-filter: blur(8px) saturate(160%);
+            color: #1e3a1e;
+            font-weight: 600;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            border: 2px solid rgba(249, 224, 118, 0.8);
+            box-shadow:
+                0 8px 15px rgba(250, 169, 22, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.8rem;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .date-chip::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .date-chip:hover::before {
+            left: 100%;
+        }
+
+        /* two column layout */
+        .two-col {
+            display: flex;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+
+        .itinerary-col {
+            flex: 2;
+            min-width: 280px;
+        }
+
+        .side-col {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        /* timeline items with glassmorphism */
+        .timeline-item {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.25) 100%);
+            backdrop-filter: blur(8px) saturate(160%);
+            -webkit-backdrop-filter: blur(8px) saturate(160%);
+            border-radius: 40px;
+            padding: 0.6rem 1rem;
+            border: 1px solid rgba(249, 224, 118, 0.5);
+            box-shadow:
+                0 8px 20px rgba(44, 95, 45, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(249, 224, 118, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .timeline-item:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.35) 100%);
+            border-color: rgba(250, 169, 22, 0.7);
+            transform: translateX(5px);
+            box-shadow:
+                0 12px 25px rgba(44, 95, 45, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .timeline-item:hover::before {
+            left: 100%;
+        }
+
+        .time-badge {
+            min-width: 120px;
+            background: rgba(44, 95, 45, 0.7);
+            backdrop-filter: blur(4px);
+            color: white;
+            font-weight: 600;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+            border: 1px solid #F9E076;
+            align-self: center;
+        }
+
+        .timeline-desc {
+            flex: 1;
+            color: #0f2b0f;
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+        }
+
+        .timeline-desc strong {
+            color: #C4510C;
+            font-weight: 700;
+        }
+
+        .timeline-desc ul {
+            margin: 0.3rem 0 0 1.2rem;
+        }
+
+        /* what to carry glass panel */
+        .carry-panel {
+            background: rgba(242, 247, 233, 0.3);
+            backdrop-filter: blur(8px);
+            border-radius: 32px;
+            padding: 1.5rem 1.2rem;
+            border: 2px solid rgba(250, 169, 22, 0.5);
+            margin-bottom: 1.8rem;
+        }
+
+        .carry-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+        .carry-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-weight: 500;
+            color: #1e3a1e;
+        }
+        .carry-list li::before {
+            content: "🥾";
+            font-size: 1.3rem;
+            filter: drop-shadow(0 2px 2px #FAA916);
+        }
+
+        .important-note {
+            background: rgba(250, 169, 22, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 0.8rem 1rem;
+            border-radius: 20px;
+            border-left: 6px solid #F15A24;
+            font-weight: 500;
+        }
+
+        /* emergency glass card */
+        .emergency-glass {
+            background: linear-gradient(135deg, rgba(241, 90, 36, 0.6) 0%, rgba(241, 90, 36, 0.8) 100%);
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border-radius: 32px;
+            padding: 1.5rem 1.2rem;
+            border: 3px solid rgba(249, 224, 118, 0.8);
+            box-shadow:
+                0 20px 40px rgba(241, 90, 36, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .emergency-glass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(249, 224, 118, 0.1) 50%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0; transform: translateX(-100%); }
+            50% { opacity: 1; transform: translateX(0%); }
+        }
+
+        .emergency-glass h4 {
+            font-family: 'Tangerine', cursive;
+            font-size: 2.8rem;
+            color: #F9E076;
+            line-height: 1;
+        }
+
+        .emergency-phone {
+            font-size: clamp(1.5rem, 6vw, 2.2rem);
+            font-weight: 700;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1rem;
+            border-radius: 60px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 2px solid white;
+            margin: 0.8rem 0;
+        }
+
+        /* footer */
+        .footer-note {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 2px solid rgba(250, 169, 22, 0.5);
+            font-weight: 500;
+            color: #1e3a1e;
+        }
+
+        .starkville {
+            font-family: 'Tangerine', cursive;
+            font-size: 2.2rem;
+            color: #F15A24;
+            background: rgba(249, 224, 118, 0.3);
+            backdrop-filter: blur(4px);
+            padding: 0.2rem 1.2rem;
+            border-radius: 40px;
+        }
+
+        /* extra small screens */
+        @media (max-width: 480px) {
+            .glass-card {
+                padding: 1rem;
+                border-radius: 2rem;
+            }
+            .content-inner {
+                padding: 1rem;
+            }
+            .timeline-item {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+            .time-badge {
+                align-self: flex-start;
+            }
+            .footer-note {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+        }
+
+        /* tablet screens */
+        @media (max-width: 768px) {
+            .glass-card {
+                padding: 1.5rem;
+            }
+            .content-inner {
+                padding: 1.2rem;
+            }
+            .two-col {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+            .itinerary-col, .side-col {
+                flex: none;
+                min-width: unset;
+            }
+            .timeline-item {
+                padding: 0.8rem 1.2rem;
+            }
+            .carry-panel, .emergency-glass {
+                padding: 1.2rem;
+            }
+        }
+
+        /* very large screens */
+        @media (min-width: 1400px) {
+            .glass-card {
+                max-width: 1400px;
+            }
+        }
+
+        /* helper classes */
+        .text-sunset { color: #F9E076; }
+        .text-jungle { color: #2C5F2D; }
+        .bg-tangerine-glass { background: rgba(241, 90, 36, 0.3); backdrop-filter: blur(4px); }
+
+        /* Welcome Modal Styles */
+        .welcome-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 95, 45, 0.4);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            opacity: 1;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .welcome-modal.hidden {
+            opacity: 0;
+            pointer-events: none;
+            animation: fadeOut 0.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                backdrop-filter: blur(0px);
+            }
+            to {
+                opacity: 1;
+                backdrop-filter: blur(5px);
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                backdrop-filter: blur(5px);
+            }
+            to {
+                opacity: 0;
+                backdrop-filter: blur(0px);
+            }
+        }
+
+        .welcome-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.3) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 3rem;
+            padding: 3rem 2rem;
+            border: 2px solid rgba(249, 224, 118, 0.5);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .welcome-logo {
+            width: 180px;
+            height: 180px;
+            border-radius: 30px;
+            margin: 0 auto 2rem;
+            object-fit: cover;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(249, 224, 118, 0.5);
+            animation: logoScale 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes logoScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .welcome-text {
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .welcome-text h2 {
+            font-family: 'Tangerine', cursive;
+            font-size: 3rem;
+            color: #F9E076;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 0 #2C5F2D;
+            border: none;
+            padding: 0;
+        }
+
+        .welcome-text p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .read-btn {
+            background: linear-gradient(135deg, rgba(249, 224, 118, 0.9) 0%, rgba(250, 169, 22, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(241, 90, 36, 0.6);
+            border-radius: 50px;
+            padding: 0.8rem 2.5rem;
+            color: #1e3a1e;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 25px rgba(250, 169, 22, 0.4);
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .read-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .read-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(250, 169, 22, 0.5);
+        }
+
+        .read-btn:hover::before {
+            left: 100%;
+        }
+
+        .read-btn:active {
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 480px) {
+            .welcome-content {
+                padding: 2rem 1.5rem;
+                border-radius: 2rem;
+            }
+            .welcome-logo {
+                width: 140px;
+                height: 140px;
+                border-radius: 20px;
+            }
+            .welcome-text h2 {
+                font-size: 2.2rem;
+            }
+            .read-btn {
+                padding: 0.7rem 2rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Welcome Modal -->
+    <div class="welcome-modal" id="welcomeModal">
+        <div class="welcome-content">
+            <img src="https://res.cloudinary.com/dwpr0xrjq/image/upload/v1758725534/LOGO_WHITE_BG_harwpu.png" alt="Starkville Adventures Logo" class="welcome-logo">
+            <div class="welcome-text">
+                <h2>Starkville Adventures</h2>
+                <p>Prepare for an unforgettable journey</p>
+            </div>
+            <button class="read-btn" id="readBtn">Read</button>
+        </div>
+    </div>
+
+    <div class="glass-card">
+        <div class="content-inner">
+            <!-- header with tangerine font -->
+            <h1>Mt. Longonot
+                <span>march 15th · crater rim hike</span>
+            </h1>
+
+            <!-- date chip -->
+            <div class="date-chip">
+                ⏱️ SATURDAY · MARCH 15, 2025 · STARKVILLE ADVENTURES
+            </div>
+
+            <!-- two column main content -->
+            <div class="two-col">
+                <!-- left: itinerary -->
+                <div class="itinerary-col">
+                    <h2>⛰️ Itinerary</h2>
+
+                    <!-- meeting -->
+                    <div style="margin-top: 1.2rem;">
+                        <h3>🚩 Meeting</h3>
+                        <div class="timeline-item">
+                            <div class="time-badge">6:30 AM</div>
+                            <div class="timeline-desc"><strong>Meet at Kencom</strong> · departure sharp</div>
+                        </div>
+                    </div>
+
+                    <!-- road trip -->
+                    <h3>🚌 Road trip</h3>
+                    <div class="timeline-item">
+                        <div class="time-badge">6:45 – 9:00 AM</div>
+                        <div class="timeline-desc"><strong>Drive to Mt. Longonot</strong> · viewpoint photo stop (10min)</div>
+                    </div>
+
+                    <!-- arrival -->
+                    <h3>📋 Arrival</h3>
+                    <div class="timeline-item">
+                        <div class="time-badge">9:00 – 9:30 AM</div>
+                        <div class="timeline-desc"><strong> briefing</strong> · stretches</div>
+                    </div>
+
+                    <!-- hiking main -->
+                    <h3>🥾 HIKING</h3>
+                    <div class="timeline-item">
+                        <div class="time-badge">9:30 – 3:00 PM</div>
+                        <div class="timeline-desc">
+                            <strong>Crater rim & loop</strong>
+                            <ul>
+                                <li>Hike to crater rim</li>
+                                <li>Loop around the crater</li>
+                                <li>Descend</li>
+                                <li>Refreshments</li>
+                                <li>Games & experience sharing</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- return -->
+                    <h3>🚐 Return</h3>
+                    <div class="timeline-item">
+                        <div class="time-badge">3:00 – 6:00 PM</div>
+                        <div class="timeline-desc"><strong>Back to Nairobi CBD</strong> (Kencom drop-off)</div>
+                    </div>
+                </div>
+
+                <!-- right: what to carry + emergency -->
+                <div class="side-col">
+                    <!-- what to carry glass panel -->
+                    <div class="carry-panel">
+                        <h2 style="font-size: 2.5rem;">🎒 What to carry</h2>
+                        <ul class="carry-list">
+                            <li><strong>2 liters of water</strong> (minimum)</li>
+                            <li>Snacks / energy food</li>
+                            <li>Raincoat / waterproof</li>
+                        </ul>
+                        <div class="important-note">
+                            <span style="color: #C4510C; font-weight: 700;">⛑️ Important:</span> Wear <strong>well-treaded hiking shoes</strong> – grip is mandatory.
+                        </div>
+                    </div>
+
+                    <!-- emergency contact glass (with sunset/tangerine) -->
+                    <div class="emergency-glass">
+                        <h4>Emergency contact</h4>
+                        <div class="emergency-phone">
+                            <span>📞</span> 0705 809412
+                        </div>
+                        <div style="display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1rem;">
+                            <span style="background: rgba(44,95,45,0.7); padding: 0.2rem 1rem; border-radius: 30px;">24/7 reachable</span>
+                            <span style="background: rgba(249,224,118,0.7); padding: 0.2rem 1rem; border-radius: 30px; color: #1f451f;">Starkville line</span>
+                        </div>
+                    </div>
+
+                    <!-- extra print/whatsapp hint -->
+                    <div style="margin-top: 1.5rem; background: rgba(249,224,118,0.2); backdrop-filter: blur(4px); border-radius: 24px; padding: 0.8rem; text-align: center; border: 2px solid #FAA916;">
+                        📲 WhatsApp or print for <strong>Starkville Adventures</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- footer -->
+            <div class="footer-note">
+                <span class="starkville">Starkville Adventures</span>
+                <span style="display: flex; gap: 0.5rem; align-items: center;">🌋 Mt. Longonot · March 15 · <span style="color: #F15A24;">#hikeKE</span></span>
+            </div>
+
+            
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="backgroundMusic" loop preload="auto">
+        <source src="https://res.cloudinary.com/dwpr0xrjq/video/upload/v1728235720/Yiruma_%EC%9D%B4%EB%A3%A8%EB%A7%88_-_River_Flows_in_You_dipz3k.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        const audio = document.getElementById('backgroundMusic');
+        const welcomeModal = document.getElementById('welcomeModal');
+        const readBtn = document.getElementById('readBtn');
+
+        // Close modal and start music when Read button is clicked
+        readBtn.addEventListener('click', () => {
+            // Close the modal with fade-out animation
+            welcomeModal.classList.add('hidden');
+
+            // Start playing music after a short delay for better UX
+            setTimeout(() => {
+                audio.volume = 0.4;
+                audio.play().then(() => {
+                    console.log('Music started successfully');
+                }).catch((error) => {
+                    console.log('Music playback error:', error);
+                });
+            }, 300);
+        });
+
+        // Keep the modal visible until user clicks Read
+        // Prevent closing on backdrop click
+        welcomeModal.addEventListener('click', (e) => {
+            if (e.target === welcomeModal) {
+                // Do nothing - modal should only close via Read button
+            }
+        });
+    </script>
+</body>
+</html>
